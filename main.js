@@ -1,5 +1,5 @@
-function tocaSom(idElementoAudio)/*parametro*/ {
-  document.querySelector('idElementoAudio').play();
+function tocaSom(idElementoAudio) /*parametro*/ {
+  document.querySelector(idElementoAudio).play()
 }
 
 /* document.querySelector('.tecla_pom').onclick = tocaSomPom;
@@ -11,9 +11,19 @@ E o que queremos aqui agora é acessar o atributo onclick desse elemento, que sa
 const listaDeTeclas = document.querySelectorAll('.tecla')
 
 let contador = 0
+
 //enquanto
-while (contador < listaDeTeclas.length) {  //length atributo que vai guardar a qt de q esta salva em lista de teclas que é 9
-  listaDeTeclas[contador].onclick = tocaSom;
+while (contador < listaDeTeclas.length) {
+  const tecla = listaDeTeclas[contador]
+  const instrumento = tecla.classList[1];
+
+  //template string
+  const idAudio = `#som_${instrumento}` //string
+
+ // console.log(idAudio)
+  tecla.onclick = function () {
+    tocaSom(idAudio)
+  }
   contador = contador + 1
-  console.log(contador)
+  //console.log(contador)
 }
